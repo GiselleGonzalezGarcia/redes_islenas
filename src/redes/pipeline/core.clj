@@ -64,7 +64,7 @@
                                                               (g/fold (pname (:person/residence p)))]))}))
                   (sort-by (juxt #(if (str/blank? (:surname %)) 1 0) #(g/fold (:surname %)) #(g/fold (:name %)))))
         ks [:id :name :origin :residence :island :dest :year :age :search]
-        ys (filter #(<= 1800 % 1910) (keep :person/year persons))
+        ys (filter #(<= 1400 % 1950) (keep :person/year persons))
         idx {:cols (into {} (map (fn [k] [k (mapv k rows)])) ks)
              :n-persons (count persons)
              :n-voyages (count voyages)

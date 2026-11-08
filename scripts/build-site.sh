@@ -23,6 +23,7 @@ cp target/release/js/main.js "$OUT/js/"
 cp resources/public/css/*.css "$OUT/css/"
 cp resources/public/geo/*.geojson "$OUT/geo/"
 cp resources/public/data/{index,payload,flows,stats}.json resources/public/data/redes-islenas.csv "$OUT/data/"
+cp resources/public/favicon.svg "$OUT/"
 touch "$OUT/.nojekyll"
 
 echo "site/ ready (base $BASE):"
