@@ -1,0 +1,216 @@
+/* Redes Isleñas — tokens */
+:root {
+  --papel: #EEF1EF;      /* chart paper */
+  --papel-2: #E1E7E6;    /* table stripe, quiet surfaces */
+  --tinta: #1B2733;      /* ink */
+  --tinta-2: #4A5866;    /* secondary text */
+  --mar: #0F3B57;        /* Atlantic */
+  --mar-hondo: #0A2A3F;
+  --cochinilla: #A3174B; /* the one accent */
+  --farol: #E2B23C;      /* ships / highlights on the sea only */
+  --picon: #6B625B;      /* volcanic grey */
+  --linea: #C5CFD0;      /* printed grid lines */
+  --display: "Ibarra Real Nova", "Iowan Old Style", Georgia, serif;
+  --texto: "Source Sans 3", system-ui, sans-serif;
+  --medida: 72ch;
+  --s1: .25rem; --s2: .5rem; --s3: 1rem; --s4: 1.5rem; --s5: 2.5rem; --s6: 4rem;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 1.0625rem/1.55 var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+a { color: var(--cochinilla); text-underline-offset: .18em; }
+a:hover { color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--farol); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; margin: 0 0 var(--s3); }
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); letter-spacing: -.01em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+h3 { font-size: 1.3rem; }
+p { max-width: var(--medida); margin: 0 0 var(--s3); }
+
+.boot { min-height: 100vh; display: grid; place-content: center; text-align: center; background: var(--mar); color: var(--papel); }
+.boot h1 { color: var(--papel); }
+
+/* ---------- shell ---------- */
+.barra {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: baseline; gap: var(--s4);
+  padding: var(--s2) var(--s4);
+  background: var(--papel);
+  border-bottom: 1px solid var(--linea);
+}
+.barra .marca { font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--tinta); text-decoration: none; }
+.barra nav { display: flex; flex-wrap: wrap; gap: var(--s3); flex: 1; }
+.barra nav a { color: var(--tinta-2); text-decoration: none; padding: var(--s1) 0; border-bottom: 2px solid transparent; }
+.barra nav a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--cochinilla); }
+.barra nav a:hover { color: var(--tinta); }
+.idioma { background: none; border: 1px solid var(--linea); color: var(--tinta-2); font: inherit; font-size: .9rem; padding: 2px 10px; border-radius: 999px; cursor: pointer; }
+.idioma:hover { color: var(--tinta); border-color: var(--tinta-2); }
+
+.pagina { padding: var(--s5) var(--s4) var(--s6); max-width: 1200px; margin: 0 auto; }
+.pie { padding: var(--s5) var(--s4); color: var(--tinta-2); font-size: .9rem; border-top: 1px solid var(--linea); }
+.pie p { max-width: 90ch; margin-bottom: var(--s2); }
+.pie .credito { color: var(--tinta); font-size: 1rem; }
+.pie .credito b { font-family: var(--display); font-size: 1.15rem; }
+.pie .cita-sitio { word-break: break-word; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: min(88vh, 820px); background: var(--mar); color: var(--papel); overflow: hidden; }
+.hero .mapa-mar { position: absolute; inset: 0; }
+.hero .rotulo {
+  position: relative; z-index: 2; pointer-events: none;
+  text-shadow: 0 1px 12px rgba(10,42,63,.8);
+  padding: var(--s6) var(--s4) var(--s4); max-width: 46rem;
+}
+.hero .rotulo > * { pointer-events: auto; }
+.hero h1 { color: var(--papel); font-size: clamp(3rem, 8vw, 6rem); margin-bottom: var(--s2); }
+.hero .entrada { font-size: 1.2rem; color: #D6E1E6; max-width: 36rem; }
+.hero .anio { position: absolute; z-index: 2; right: var(--s4); bottom: var(--s5); text-align: right; pointer-events: none; }
+.hero .anio b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(3.5rem, 10vw, 8rem); color: var(--farol); line-height: .9; font-variant-numeric: lining-nums tabular-nums; }
+.hero .anio span { color: #C9D6DC; font-size: .95rem; }
+.hero .anio span:not(:empty)::after { content: " en travesía"; }
+html[lang="en"] .hero .anio span:not(:empty)::after { content: " at sea"; }
+.hero .maplibregl-ctrl-attrib, .travesia .maplibregl-ctrl-attrib { background: rgba(10,42,63,.6); color: #9FB4BF; }
+.hero .maplibregl-ctrl-attrib a, .travesia .maplibregl-ctrl-attrib a { color: #C9D6DC; }
+.maplibregl-ctrl-attrib-button { filter: invert(1); }
+.busca-hero { display: flex; gap: var(--s2); margin-top: var(--s4); max-width: 34rem; }
+.busca-hero input, .busca input {
+  flex: 1; font: inherit; padding: .7rem .9rem; border-radius: 4px;
+  border: 1px solid var(--linea); background: #fff; color: var(--tinta);
+}
+.busca-hero input { border-color: transparent; }
+.boton { font: inherit; font-weight: 700; padding: .7rem 1.1rem; border: 0; border-radius: 4px; background: var(--cochinilla); color: #fff; cursor: pointer; }
+.boton:hover { background: #82123C; }
+
+/* ---------- numbers strip (home) ---------- */
+.cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--s4); padding: var(--s5) 0; }
+.cifra b { display: block; font-variant-numeric: lining-nums; font-family: var(--display); font-size: 2.4rem; font-weight: 600; line-height: 1; }
+.cifra span { color: var(--tinta-2); }
+
+/* ---------- register table ---------- */
+.busca { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; margin-bottom: var(--s3); }
+.busca .cuenta, .cuenta { color: var(--tinta-2); font-variant-numeric: lining-nums; }
+.registro { width: 100%; border-collapse: collapse; font-size: .97rem; }
+.registro th { text-align: left; font-weight: 700; color: var(--tinta-2); border-bottom: 2px solid var(--tinta); padding: var(--s2); white-space: nowrap; }
+.registro td { padding: var(--s2); border-bottom: 1px solid var(--linea); vertical-align: top; }
+.registro tbody tr:nth-child(even) td { background: var(--papel-2); }
+.registro tbody tr { cursor: pointer; }
+.registro tbody tr:hover td { background: #D5DEDE; }
+.registro .nombre { font-family: var(--display); font-size: 1.12rem; }
+.registro .num { text-align: right; font-family: var(--display); font-size: 1.08rem; font-variant-numeric: lining-nums tabular-nums; }
+.paginas { display: flex; gap: var(--s2); align-items: center; margin-top: var(--s3); }
+.paginas button { font: inherit; padding: .35rem .8rem; border: 1px solid var(--linea); background: #fff; border-radius: 4px; cursor: pointer; }
+.paginas button:disabled { opacity: .4; cursor: default; }
+
+/* ---------- person record ---------- */
+.ficha h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.ficha .sub { color: var(--tinta-2); font-size: 1.1rem; margin-bottom: var(--s4); }
+.campos { display: grid; grid-template-columns: max-content 1fr; gap: var(--s2) var(--s4); max-width: 60rem; margin: 0 0 var(--s5); }
+.campos dt { color: var(--tinta-2); }
+.campos dd { margin: 0; }
+.dudoso { color: var(--cochinilla); font-size: .85rem; margin-left: var(--s2); }
+.fuente-img { margin: var(--s4) 0; border: 1px solid var(--linea); background: #fff; overflow: hidden; }
+.cita { color: var(--tinta-2); font-size: .92rem; max-width: var(--medida); }
+.literal { font-family: var(--display); font-size: 1.1rem; white-space: pre-wrap; background: #fff; border-left: 3px solid var(--cochinilla); padding: var(--s3) var(--s4); max-width: var(--medida); }
+
+/* ---------- la travesía ---------- */
+.travesia, .travesia-lienzo { position: relative; height: calc(100vh - 57px); min-height: 520px; background: var(--mar); color: var(--papel); }
+.travesia-lienzo .mapa { position: absolute !important; inset: 0; }
+.mandos {
+  position: absolute; z-index: 3; left: var(--s4); bottom: var(--s4); width: min(34rem, calc(100% - 2 * var(--s4)));
+  background: rgba(10, 42, 63, .88); border: 1px solid rgba(238,241,239,.15); border-radius: 6px; padding: var(--s3);
+}
+.mandos .fila { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.mandos .anio-grande { font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--farol); font-variant-numeric: lining-nums tabular-nums; min-width: 5ch; }
+.mandos .vel { margin-left: auto; color: #C9D6DC; font-size: .92rem; }
+.mandos select { font: inherit; font-size: .92rem; background: var(--mar-hondo); color: var(--papel); border: 1px solid rgba(238,241,239,.3); border-radius: 4px; padding: 2px 6px; }
+.boton-sec { font: inherit; font-size: .92rem; padding: .35rem .8rem; margin-top: var(--s2); border-radius: 4px; cursor: pointer;
+  background: transparent; color: var(--papel); border: 1px solid rgba(238,241,239,.4); }
+.boton-sec:hover { border-color: var(--farol); color: var(--farol); }
+.mandos input[type=range] { width: 100%; margin: var(--s3) 0 var(--s2); accent-color: var(--farol); }
+.mandos .conmutas { gap: var(--s2) var(--s4); font-size: .92rem; color: #C9D6DC; }
+.mandos .conmuta input { accent-color: var(--farol); }
+.mandos .nota { font-size: .82rem; color: #9FB4BF; margin: var(--s2) 0 0; }
+.a-bordo {
+  position: absolute; z-index: 3; right: var(--s4); top: var(--s4); width: 19rem; max-height: calc(100% - 2 * var(--s4)); overflow: auto;
+  background: rgba(10, 42, 63, .88); border: 1px solid rgba(238,241,239,.15); border-radius: 6px; padding: var(--s3);
+}
+.a-bordo h2 { font-size: 1.25rem; color: var(--papel); margin-bottom: var(--s2); }
+.a-bordo .cuenta-mar { color: var(--farol); font-variant-numeric: lining-nums; }
+.lista-barcos { list-style: none; margin: 0; padding: 0; }
+.lista-barcos li { padding: var(--s2) 0; border-top: 1px solid rgba(238,241,239,.12); }
+.lista-barcos b { display: block; font-family: var(--display); font-size: 1.15rem; font-weight: 600; color: var(--farol); }
+.lista-barcos span, .a-bordo .vacio { font-size: .88rem; color: #C9D6DC; }
+
+/* ---------- explorar sub-navigation, towns, ships ---------- */
+.subnav { display: flex; gap: var(--s4); margin-bottom: var(--s4); border-bottom: 1px solid var(--linea); }
+.subnav a { color: var(--tinta-2); text-decoration: none; padding: var(--s2) 0; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.subnav a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--cochinilla); }
+.islas { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--s5); }
+.pueblos { list-style: none; padding: 0; margin: 0; columns: 1; }
+.pueblos li { padding: 3px 0; break-inside: avoid; }
+.pueblos a { font-family: var(--display); font-size: 1.12rem; }
+.pueblos .n { color: var(--tinta-2); font-size: .9rem; font-variant-numeric: lining-nums; }
+.barcos { columns: 16rem; }
+.resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--s4) var(--s5); margin: var(--s4) 0 var(--s5); }
+.resumen h2 { font-size: 1.25rem; }
+.grafico.mini { min-height: 160px; }
+.viaje { margin-top: var(--s5); }
+.viaje h2 { font-size: 1.35rem; }
+
+/* ---------- text pages ---------- */
+.texto { max-width: 52rem; }
+.texto .intro { font-size: 1.2rem; color: var(--tinta-2); }
+.texto section { margin-top: var(--s5); }
+.texto p { line-height: 1.65; }
+.glosario { display: grid; grid-template-columns: minmax(9rem, max-content) 1fr; gap: var(--s3) var(--s4); }
+.glosario dt { font-family: var(--display); font-size: 1.15rem; font-weight: 600; }
+.glosario dd { margin: 0; color: var(--tinta-2); }
+.lecturas { list-style: none; padding: 0; margin: 0; }
+.lecturas li { padding: var(--s3) 0; border-top: 1px solid var(--linea); }
+.lecturas li a { font-family: var(--display); font-size: 1.2rem; }
+.lecturas li p { margin: var(--s1) 0 0; color: var(--tinta-2); }
+.descarga { display: inline-block; font-weight: 700; padding: .55rem 1rem; border: 1px solid var(--cochinilla); border-radius: 4px; text-decoration: none; }
+.descarga:hover { background: var(--cochinilla); color: #fff; }
+.equipo dt { font-size: 1.1rem; }
+.bibliografia { padding: 0; list-style: none; }
+.bibliografia li { padding-left: 2em; text-indent: -2em; margin-bottom: var(--s3); line-height: 1.55; }
+.pendiente { color: var(--cochinilla); font-style: italic; }
+
+/* ---------- datos ---------- */
+.datos .intro { color: var(--tinta-2); font-size: 1.1rem; }
+.paneles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 34rem), 1fr)); gap: var(--s5) var(--s5); margin-top: var(--s5); }
+.panel { margin: 0; min-width: 0; }
+.panel:first-child { grid-column: 1 / -1; }
+.panel h2 { margin-bottom: var(--s2); }
+.panel > p { color: var(--tinta-2); }
+.grafico { width: 100%; min-height: 120px; }
+.grafico svg { overflow: visible; }
+.tabla-datos { margin-top: var(--s2); font-size: .92rem; }
+.tabla-datos summary { cursor: pointer; color: var(--cochinilla); }
+.tabla-datos table { margin-top: var(--s2); }
+.tabla-datos tbody tr { cursor: default; }
+
+@media (max-width: 640px) {
+  .a-bordo { display: none; }
+  .mandos { left: var(--s2); bottom: var(--s2); width: calc(100% - 2 * var(--s2)); }
+  .barra { display: grid; grid-template-columns: 1fr auto; gap: var(--s1) var(--s2); padding: var(--s2) var(--s3) 0; align-items: center; }
+  .barra nav { grid-column: 1 / -1; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: var(--s3); scrollbar-width: none; }
+  .barra .idioma { grid-column: 2; grid-row: 1; }
+  .travesia, .travesia-lienzo { height: calc(100vh - 92px); }
+  .pagina { padding: var(--s4) var(--s3) var(--s5); }
+  .registro .opcional { display: none; }
+  .campos { grid-template-columns: 1fr; }
+  .campos dt { margin-top: var(--s2); }
+  .glosario { grid-template-columns: 1fr; gap: var(--s1); }
+  .glosario dd { margin-bottom: var(--s2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
