@@ -1,0 +1,21 @@
+{
+  "name": "redes-islenas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Redes Isleñas — emigración canaria del siglo XIX",
+  "devDependencies": {
+    "shadow-cljs": "3.5.11"
+  },
+  "dependencies": {
+    "@deck.gl/core": "^9.4.1",
+    "@deck.gl/extensions": "^9.4.1",
+    "@deck.gl/geo-layers": "^9.4.1",
+    "@deck.gl/layers": "^9.4.1",
+    "@deck.gl/mapbox": "^9.4.1",
+    "@observablehq/plot": "^0.6.19",
+    "d3": "^7.9.2",
+    "maplibre-gl": "^5.24.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}

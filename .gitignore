@@ -1,0 +1,16 @@
+# large / derived data
+data/raw/*.pdf
+data/raw/superseded/
+data/work/
+# build
+.cpcache/
+.shadow-cljs/
+node_modules/
+target/
+resources/public/js/
+.nrepl-port
+# python
+.venv/
+__pycache__/
+resources/public/data/
+site/
